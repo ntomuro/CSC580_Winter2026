@@ -7705,7 +7705,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="(6)-Experiment-with-Initial-Q-values.">(6) Experiment with Initial Q values.<a class="anchor-link" href="#(6)-Experiment-with-Initial-Q-values.">¶</a></h3><p><strong>Make Action1 the best initially (by setting its Q value the highest)</strong>.  Then run the same experiment and show the average rewards.</p>
+<h3 id="(6)-Experiment-with-Initial-Q-values.">(6) Experiment with Initial Q values.<a class="anchor-link" href="#(6)-Experiment-with-Initial-Q-values.">¶</a></h3><p><strong>Make Action1 the best initially (by setting its Q value the highest)</strong>.  NOTE: Be sure to use <strong>floating values</strong> (e.g. 5.0, 0.0) instead of integers (e.g. 5, 0) when you initialize the Q-values.</p>
+<p>Then run the same experiment and show the average rewards.</p>
 <p>Show the output.  It should look similar to this:</p>
 <pre><code>Epsilon 0.0: Q=[8. 0. 0. 0.], N=[1000.    0.    0.    0.]
 Epsilon 0.01: Q=[8.     1.6905 4.5245 5.0895], N=[966.3555   8.2365  13.403   12.005 ]
