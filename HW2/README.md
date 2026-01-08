@@ -4,7 +4,7 @@ This assignment is to code and run experiments with the Snake Game using a custo
 
 **Part 1**.  Q-Learning Agent
 
-- (1) The first task for this part is to complete the code for agent (class Agent in "Agent.py").
+- (1) The first task for this part is to complete the code for agent (class Agent in **"Agent.py"**).
 - (2) The second task in this part is to train the agent and save the derived Q-table to a file.
 - (3) The third task in this part is to evaluate the learned Q-table.
 
