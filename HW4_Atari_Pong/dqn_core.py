@@ -1,26 +1,16 @@
-#----------------------------------
-# 1. Wrappers
-#----------------------------------
+"""
+dqn-core.py
+
+Collection of core functions for Atari Pong.
+"""
+#---------------------------------------------------
+# 1. Wrappers -- additional features for environment
+#---------------------------------------------------
 import gymnasium as gym
 import numpy as np
 import cv2
 from collections import deque
 import ale_py
-
-class ActionRepeat(gym.Wrapper):
-    def __init__(self, env, repeat=4):
-        super().__init__(env)
-        self.repeat = repeat
-
-    def step(self, action):
-        total_reward = 0.0
-        terminated = truncated = False
-        for _ in range(self.repeat):
-            obs, reward, terminated, truncated, info = self.env.step(action)
-            total_reward += reward
-            if terminated or truncated:
-                break
-        return obs, total_reward, terminated, truncated, info
 
 class AtariPreprocess(gym.ObservationWrapper):
     def __init__(self, env):
@@ -54,8 +44,10 @@ class FrameStack(gym.Wrapper):
         self.frames.append(obs)
         return np.array(self.frames), reward, terminated, truncated, info
 
-# Reduce the action space from six to three (NOOP, FIRE, UP, DOWN)
 class PongActionReducer(gym.ActionWrapper):
+    """
+    Reduce the action space from six to three (NOOP, FIRE, UP, DOWN)
+    """
     def __init__(self, env):
         super().__init__(env)
         self.action_space = gym.spaces.Discrete(4)
@@ -111,9 +103,9 @@ class ReplayBuffer:
         with open(path, "rb") as f:
             return pickle.load(f)
 			
-#----------------------------------
-# 3. DQN
-#----------------------------------
+#--------------------------------------------------------------
+# 3. DQN -- same deep learning network used in the Nature paper
+#--------------------------------------------------------------
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -146,11 +138,9 @@ class DQN(nn.Module):
         x = x.view(x.size(0), -1)
         return self.fc(x)
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-
-#----------------------------------
-# 4. make_env function
-#----------------------------------
+#--------------------------------------------------
+# 4. make_env function -- incorporates the Wrappers
+#--------------------------------------------------
 def make_env(render_mode=None):
     env = gym.make("PongNoFrameskip-v4", render_mode=render_mode)
     env = PongActionReducer(env)
@@ -158,20 +148,3 @@ def make_env(render_mode=None):
     env = FrameStack(env, 4)
     return env
 	
-#----------------------------------
-# 5. Constants and Initial parameter values
-#----------------------------------
-checkpoint_dir = "checkpoints"
-qnet_file = "q_net.pt"
-targetnet_file = "target_net.pt"
-reply_file = "replay.pkl"
-reply_zip = "replay.zip"
-
-epsilon = 1.0
-epsilon_min = 0.1
-epsilon_decay = 1e-6
-gamma = 0.99
-batch_size = 32
-target_update = 10_000
-
-		

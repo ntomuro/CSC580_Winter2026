@@ -4,7 +4,7 @@ CSC 580 HW#2 "QLearning.py" -- Q-learning for the Snake Game
 """
 import matplotlib
 import SnakeEnv as snake_env
-import Agent_1 as agent_class
+import Agent as agent_class
 
 import numpy as np
 import matplotlib.pyplot as plt
