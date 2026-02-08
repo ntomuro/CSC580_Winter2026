@@ -111,9 +111,12 @@ class ReplayBuffer:
 
     def push(self, state, action, reward, next_state, done):
         ## (*) TODO:
-        ## Store transition in buffer (circular).
-        ## Be sure not to extend beyond capacity as well as setting
-        ## the self.pos correctly.
+        ## Inser a transition (a 5-tuple consisting of <state, action, reward, 
+        ## next_state, done> in buffer (circular).  Extend the buffer (list)
+        ## if the buffer is under the capacity (and increment pos).  If it is 
+        ## at the full capacity, overwrite the slot in the buffer indicated by
+        ## pos.  Be sure not to extend beyond capacity as well as incrementing
+        ## (setting) the self.pos correctly.
         ##
 
 
