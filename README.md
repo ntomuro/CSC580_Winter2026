@@ -10,7 +10,7 @@ Following assignments are planned so far (as of Jan 2026).
 - Homework #2: :robot: Snake game
 - Homework #3: :deciduous_tree: Essay on Select AI Topic
 - Homework #4: :dog: Atari Pong
-- Homework #5: :snail: RL in NLP/LLM  (TBD)
+- Homework #5: :snail: RL in NLP/LLM
 - Default Final Project: :jack_o_lantern: World Model, plus more  (TBD)
 
 There will also be a **Final Project** due at the end of the course.
